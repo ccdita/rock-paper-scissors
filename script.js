@@ -99,6 +99,14 @@ function playGame() {
             console.log(`Tie! You both chose ${humanChoice}.`);
         }
     }
+
+    if (humanScore > computerScore) {
+        console.log(`You win! Your score: ${humanScore} | Computer's score: ${computerScore}`);
+    } else if (humanScore < computerScore) {
+        console.log(`You lose! Your score: ${humanScore} | Computer's score: ${computerScore}`);
+    } else {
+        console.log(`Tie! Your score: ${humanScore} | Computer's score: ${computerScore}`);
+    }
 }
 
 playGame();
