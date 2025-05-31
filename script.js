@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     // Generate a random number (0, 1, 2)
     // Math.floor rounds the generated float down to the nearest integer
