@@ -14,3 +14,18 @@ function getComputerChoice() {
     }
 }
 
+function getHumanChoice() {
+    const q = "Enter your play: (rock, paper, scissors)";
+    const plays = ["rock", "paper", "scissors"];
+    // Prompt the player for their play 
+    let humanChoice = prompt(q).toLowerCase();
+    // If the player does not enter a valid play, keep re-prompting them until they do so
+    while (!plays.includes(humanChoice)) {
+        humanChoice = prompt(q).toLowerCase();
+    }
+    return humanChoice;
+}
+
+console.log(getComputerChoice());
+console.log(getHumanChoice());
+
