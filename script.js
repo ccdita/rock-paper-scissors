@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
     // Generate a random number (0, 1, 2)
     // Math.floor rounds the generated float down to the nearest integer
@@ -74,15 +71,34 @@ function playRound(humanChoice, computerChoice) {
             break;
     }
 
-    if (winner == "human") {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
-        humanScore = ++humanScore;
-    } else if (winner == "computer") {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
-        computerScore = ++computerScore;
-    } else {
-        console.log(`Tie! You both chose ${humanChoice}.`);
+    return winner;
+}
+
+function playGame() {
+    // Set humanScore and computerScore to 0
+    let humanScore = 0;
+    let computerScore = 0;
+    let winner;
+    let humanChoice;
+    let computerChoice;
+    // Play 5 rounds
+    for (i = 0; i < 5; i++) {
+        // Prompt the human player for their play
+        humanChoice = getHumanChoice();
+        computerChoice = getComputerChoice();
+        // Play the round and get the winner
+        winner = playRound(humanChoice, computerChoice);
+        // Determine the winner of the current round and increment the appropriate score
+        if (winner == "human") {
+            console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+            humanScore = ++humanScore;
+        } else if (winner == "computer") {
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+            computerScore = ++computerScore;
+        } else {
+            console.log(`Tie! You both chose ${humanChoice}.`);
+        }
     }
 }
 
-playRound(getHumanChoice(), getComputerChoice());
+playGame();
