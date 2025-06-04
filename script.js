@@ -1,3 +1,25 @@
+const buttonContainer = document.querySelector("#buttonContainer");
+// "Bubble" up to the parent container and add event listers to each child
+buttonContainer.addEventListener("click", (e) => {
+    // Get the event target's (button) id
+    const targetId = e.target.id;
+    let humanChoice = "";
+    // Set the humanChoice depending on the button that was clicked
+    switch (targetId) {
+        case "rock":
+            humanChoice = "rock";
+            break;
+        case "paper":
+            humanChoice = "paper";
+            break;
+        case "scissors":
+            humanChoice = "scissors";
+            break; 
+    }
+    // Call playRound() with the humanChoice
+    playRound(humanChoice, getComputerChoice());
+});
+
 function getComputerChoice() {
     // Generate a random number (0, 1, 2)
     // Math.floor rounds the generated float down to the nearest integer
@@ -14,17 +36,17 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    const q = "Enter your play: (rock, paper, scissors)";
-    const plays = ["rock", "paper", "scissors"];
-    // Prompt the player for their play 
-    let humanChoice = prompt(q).toLowerCase();
-    // If the player does not enter a valid play, keep re-prompting them until they do so
-    while (!plays.includes(humanChoice)) {
-        humanChoice = prompt(q).toLowerCase();
-    }
-    return humanChoice;
-}
+// function getHumanChoice() {
+//     const q = "Enter your play: (rock, paper, scissors)";
+//     const plays = ["rock", "paper", "scissors"];
+//     // Prompt the player for their play 
+//     let humanChoice = prompt(q).toLowerCase();
+//     // If the player does not enter a valid play, keep re-prompting them until they do so
+//     while (!plays.includes(humanChoice)) {
+//         humanChoice = prompt(q).toLowerCase();
+//     }
+//     return humanChoice;
+// }
 
 function playRound(humanChoice, computerChoice) {
     let winner; 
@@ -82,23 +104,23 @@ function playGame() {
     let humanChoice;
     let computerChoice;
     // Play 5 rounds
-    for (i = 0; i < 5; i++) {
-        // Prompt the human player for their play
-        humanChoice = getHumanChoice();
-        computerChoice = getComputerChoice();
-        // Play the round and get the winner
-        winner = playRound(humanChoice, computerChoice);
-        // Determine the winner of the current round and increment the appropriate score
-        if (winner == "human") {
-            console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
-            humanScore = ++humanScore;
-        } else if (winner == "computer") {
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
-            computerScore = ++computerScore;
-        } else {
-            console.log(`Tie! You both chose ${humanChoice}.`);
-        }
+    // for (i = 0; i < 5; i++) {
+    // Prompt the human player for their play
+    humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+    // Play the round and get the winner
+    winner = playRound(humanChoice, computerChoice);
+    // Determine the winner of the current round and increment the appropriate score
+    if (winner == "human") {
+        console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+        humanScore = ++humanScore;
+    } else if (winner == "computer") {
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+        computerScore = ++computerScore;
+    } else {
+        console.log(`Tie! You both chose ${humanChoice}.`);
     }
+    // }
 
     if (humanScore > computerScore) {
         console.log(`You win! Your score: ${humanScore} | Computer's score: ${computerScore}`);
