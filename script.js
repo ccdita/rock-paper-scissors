@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 const buttonContainer = document.querySelector("#buttonContainer");
 // "Bubble" up to the parent container and add event listers to each child
 buttonContainer.addEventListener("click", (e) => {
@@ -17,7 +20,7 @@ buttonContainer.addEventListener("click", (e) => {
             break; 
     }
     // Call playRound() with the humanChoice
-    playRound(humanChoice, getComputerChoice());
+    playGame(playRound(humanChoice, getComputerChoice()));
 });
 
 function getComputerChoice() {
@@ -93,42 +96,34 @@ function playRound(humanChoice, computerChoice) {
             break;
     }
 
-    return winner;
+    return [winner, humanChoice, computerChoice];
 }
 
-function playGame() {
-    // Set humanScore and computerScore to 0
-    let humanScore = 0;
-    let computerScore = 0;
-    let winner;
-    let humanChoice;
-    let computerChoice;
-    // Play 5 rounds
-    // for (i = 0; i < 5; i++) {
-    // Prompt the human player for their play
-    humanChoice = getHumanChoice();
-    computerChoice = getComputerChoice();
-    // Play the round and get the winner
-    winner = playRound(humanChoice, computerChoice);
+function playGame(winnerArr) {
+    const winner = winnerArr[0];
+    const humanChoice = winnerArr[1];
+    const computerChoice = winnerArr[2];
     // Determine the winner of the current round and increment the appropriate score
+    const resultsContainer = document.querySelector("#resultsContainer");
     if (winner == "human") {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
         humanScore = ++humanScore;
+        resultsContainer.textContent = `You win! ${humanChoice} beats ${computerChoice}.
+        Your score: ${humanScore} | Computer's score: ${computerScore}`;
     } else if (winner == "computer") {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
         computerScore = ++computerScore;
+        resultsContainer.textContent = `You lose! ${computerChoice} beats ${humanChoice}.
+        Your score: ${humanScore} | Computer's score: ${computerScore}`;
     } else {
-        console.log(`Tie! You both chose ${humanChoice}.`);
+        resultsContainer.textContent = `Tie! You both chose ${humanChoice}.
+        Your score: ${humanScore} | Computer's score: ${computerScore}`;
     }
     // }
 
-    if (humanScore > computerScore) {
-        console.log(`You win! Your score: ${humanScore} | Computer's score: ${computerScore}`);
-    } else if (humanScore < computerScore) {
-        console.log(`You lose! Your score: ${humanScore} | Computer's score: ${computerScore}`);
-    } else {
-        console.log(`Tie! Your score: ${humanScore} | Computer's score: ${computerScore}`);
-    }
-}
-
-playGame();
+    // if (humanScore > computerScore) {
+    //     resultsContainer.textContent = `You win! Your score: ${humanScore} | Computer's score: ${computerScore}`;
+    // } else if (humanScore < computerScore) {
+    //     resultsContainer.textContent = `You lose! Your score: ${humanScore} | Computer's score: ${computerScore}`;
+    // } else {
+    //     resultsContainer.textContent = `Tie! Your score: ${humanScore} | Computer's score: ${computerScore}`;
+    // }
+};
