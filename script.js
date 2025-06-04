@@ -119,11 +119,13 @@ function playGame(winnerArr) {
     }
     // }
 
-    // if (humanScore > computerScore) {
-    //     resultsContainer.textContent = `You win! Your score: ${humanScore} | Computer's score: ${computerScore}`;
-    // } else if (humanScore < computerScore) {
-    //     resultsContainer.textContent = `You lose! Your score: ${humanScore} | Computer's score: ${computerScore}`;
-    // } else {
-    //     resultsContainer.textContent = `Tie! Your score: ${humanScore} | Computer's score: ${computerScore}`;
-    // }
+    if (humanScore === 5 || computerScore === 5) {
+        if (humanScore > computerScore) {
+            resultsContainer.textContent = `You win! Your score: ${humanScore} | Computer's score: ${computerScore}`;
+        } else if (humanScore < computerScore) {
+            resultsContainer.textContent = `You lose! Your score: ${humanScore} | Computer's score: ${computerScore}`;
+        } else {
+            resultsContainer.textContent = `Tie! Your score: ${humanScore} | Computer's score: ${computerScore}`;
+        }
+    }
 };
